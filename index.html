@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IllustMine | 코어마인의 따뜻한 일러스트 광산</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 상단 헤더 -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo" onclick="resetFilters()">
+        🎨 IllustMine <span class="brand-badge">by Coremine</span>
+      </a>
+      <div class="header-search">
+        <input type="text" id="searchInput" placeholder="키워드 검색 (예: 고양이, 커피, 여름)...">
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 레이아웃 (사이드바 + 콘텐츠) -->
+  <div class="app-layout">
+    
+    <!-- 좌측 카테고리 & 필터 사이드바 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h3>필터 검색</h3>
+        <button class="reset-btn" onclick="resetFilters()">초기화</button>
+      </div>
+
+      <div class="filter-group">
+        <h4>계절 (다중 선택)</h4>
+        <label><input type="checkbox" name="season" value="봄" onchange="applyFilters()"> 🌸 봄</label>
+        <label><input type="checkbox" name="season" value="여름" onchange="applyFilters()"> 🍉 여름</label>
+        <label><input type="checkbox" name="season" value="가을" onchange="applyFilters()"> 🍁 가을</label>
+        <label><input type="checkbox" name="season" value="겨울" onchange="applyFilters()"> ⛄ 겨울</label>
+      </div>
+
+      <div class="filter-group">
+        <h4>용도 / 주제 (다중 선택)</h4>
+        <label><input type="checkbox" name="category" value="비즈니스" onchange="applyFilters()"> 💼 비즈니스</label>
+        <label><input type="checkbox" name="category" value="동물" onchange="applyFilters()"> 🐱 동물</label>
+        <label><input type="checkbox" name="category" value="음식" onchange="applyFilters()"> 🍰 음식/디저트</label>
+        <label><input type="checkbox" name="category" value="일상" onchange="applyFilters()"> 🪴 일상/인테리어</label>
+      </div>
+    </aside>
+
+    <!-- 메인 갤러리 영역 -->
+    <main class="main-content">
+      <div class="popular-tags">
+        <span class="tag-label">인기 태그:</span>
+        <button class="tag" onclick="quickTagSearch('여름')">#여름</button>
+        <button class="tag" onclick="quickTagSearch('직장인')">#직장인</button>
+        <button class="tag" onclick="quickTagSearch('고양이')">#고양이</button>
+        <button class="tag" onclick="quickTagSearch('커피')">#커피</button>
+      </div>
+
+      <div class="grid" id="galleryGrid"></div>
+    </main>
+  </div>
+
+  <!-- 일러스트 상세 모달 팝업창 -->
+  <div id="imageModal" class="modal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal()">✕</button>
+      
+      <div class="modal-body">
+        <div class="modal-preview" id="modalPreview">🎨</div>
+        
+        <div class="modal-details">
+          <span class="modal-category" id="modalCategory">카테고리</span>
+          <h2 class="modal-title" id="modalTitle">일러스트 제목</h2>
+          <p class="modal-desc" id="modalDesc">상세 설명이 들어갑니다.</p>
+
+          <div class="modal-tags" id="modalTags"></div>
+
+          <div class="download-section">
+            <label class="select-label">해상도 선택:</label>
+            <select id="resolutionSelect" class="res-select">
+              <option value="512">웹용 표준 (512 × 512 px)</option>
+              <option value="1024" selected>고화질 (1024 × 1024 px)</option>
+              <option value="2048">초고화질 원본 (2048 × 2048 px)</option>
+            </select>
+            <button class="modal-download-btn" id="modalDownloadBtn">PNG 이미지 다운로드</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
