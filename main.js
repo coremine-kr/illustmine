@@ -6,7 +6,7 @@ const searchInput = document.getElementById('searchInput');
 // 1. JSON 파일 불러오기 (fetch)
 async function loadIllustrations() {
   try {
-    const response = await fetch('illustrations.json');
+    const response = await fetch('illustration.json');
     illustrations = await response.json();
     renderGallery(illustrations);
   } catch (error) {
